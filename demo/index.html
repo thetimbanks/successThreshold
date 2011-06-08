@@ -1,0 +1,84 @@
+
+<!DOCTYPE HTML> 
+<html> 
+<head> 
+	<meta charset="UTF-8"> 
+	<title>jQuery Ajax Prefilter Demo - thetimbanks.com</title> 
+	
+	<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script> 
+	<script type="text/javascript" src="js/successThreshold.js"></script> 
+	<script type="text/javascript"> 
+		$(function(){
+			$("#normal-ajax-call").click(function() {
+				$.ajax({
+					url: "http://www.thetimbanks.com/demos/jquery/successThreshold/ajaxfile.html",
+					type: "GET",
+					beforeSend: function() {
+						$("#ajax-loading-message").show();
+					},
+					success: function(){
+						$("#ajax-loading-message").hide();
+					}
+				});
+				return false;
+			});
+			
+			$("#threshold-ajax-call").click(function() {
+				$.ajax({
+					url: "http://www.thetimbanks.com/demos/jquery/successThreshold/ajaxfile.html",
+					type: "GET",
+					beforeSend: function() {
+						$("#ajax-loading-message").show();
+					},
+					successThreshold: 3000,
+					success: function(){
+						$("#ajax-loading-message").hide();
+					}
+				});
+				return false;
+			});
+		});
+	</script>
+	
+	<link rel="stylesheet" href="css/reset.css" /> 
+	<link rel="stylesheet" href="css/demo.css" /> 
+	<style>
+		#ajax-loading-message { display: none;}
+	</style> 
+</head> 
+<body> 
+	<div id="container-wrapper"> 
+		<div id="container"> 
+			<h1>jQuery Ajax Prefilter Demo</h1> 
+			<h2>Summary</h2> 
+			<div id="summary"> 
+				<p>The purpose of the prefilter is to provide a way to delay the execution of the success callback of an ajax call.  Sometimes it is good to delay the call in order to show a message while the ajax call is loading.</p>
+			</div> 
+			
+			<h2>Demo</h2> 
+			<div id="demo">
+				<pre> 
+$("#threshold-ajax-call").click(function() {
+	$.ajax({
+		url: "http://www.thetimbanks.com/demos/jquery/successThreshold/ajaxfile.html",
+		type: "GET",
+		beforeSend: function() {
+			$("#ajax-loading-message").show();
+		},
+		successThreshold: 3000,
+		success: function(){
+			$("#ajax-loading-message").hide();
+		}
+	});
+	return false;
+});
+				</pre> 
+				<a href="#" id="normal-ajax-call">Basic ajax call</a> <br /> 
+				<a href="#" id="threshold-ajax-call">Ajax call with success Threshold</a> 
+				
+				<p id="ajax-loading-message">Something is loading!</p>
+			</div>
+		</div> 
+	</div> 
+</body> 
+</html>
