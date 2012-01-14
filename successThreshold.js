@@ -1,5 +1,5 @@
 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-    if (originalOptions.delaySuccess && $.isFunction(originalOptions.success)) {
+    if (originalOptions.successThreshold && $.isFunction(originalOptions.success)) {
         var start, stop;
         options.beforeSend = function () {
             start = new Date().getTime();
@@ -14,7 +14,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
                 originalOptions.success.apply(that, args);
             }
 
-            var difference = originalOptions.delaySuccess - (stop - start);
+            var difference = originalOptions.successThreshold - (stop - start);
             if (difference > 0)
                 setTimeout(applySuccess, difference);
             else
