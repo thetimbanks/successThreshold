@@ -9,14 +9,14 @@ Just copy the script into any js file that is included on all pages that need ac
 
 ## Usage ##
 
-$.ajax({
-	...
-	successThreshold: 3000,
-	success: function() {
-		...
-	}
-	...
-});
+    $.ajax({
+	    ...
+	    successThreshold: 3000,
+	    success: function() {
+		    ...
+	    }
+	    ...
+    });
 
 The previous example will not run the success function until at least 3 seconds after the call has been made.  The amount of time the call takes is subtracted from the successThreshold option.  If the call took less than the threshold, the success function is delayed the difference.  If the call took longer than the threshold the success function is immediately fired.
 
